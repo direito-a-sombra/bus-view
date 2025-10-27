@@ -16,6 +16,11 @@
         margin-bottom: 20px;
         column-gap: 20px;
       }
+      .row.heading {
+        background-color: #fff;
+        position: sticky;
+        top: 0;
+      }
       .info-wrapper {
         width: 15%;
         padding: 14px;
@@ -42,6 +47,7 @@
 
       const headingRow = document.createElement("div");
       headingRow.classList.add("row");
+      headingRow.classList.add("heading");
       ["", "address", "address_coords", "heading", "station_coords"].forEach((dir, idx) => {
         const infoEl = document.createElement("div");
         if (idx == 0) {
