@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      .table {
+        width: 100%;
+      }
+      .row {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-bottom: 20px;
+        column-gap: 20px;
+      }
+      .info-wrapper {
+        width: 15%;
+        padding: 14px;
+      }
+      .picture-wrapper {
+        width: 25%;
+      }
+      .picture {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="table" class="table">
+    </div>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const tableEl = document.getElementById("table");
+      const res = await fetch("../data/stops.tgh.csv");
+      const csvText = await res.text();
+      const csvLines = csvText.split("\n").slice(1, 200);
+
+      const headingRow = document.createElement("div");
+      headingRow.classList.add("row");
+      ["", "address", "address_coords", "heading", "station_coords"].forEach((dir, idx) => {
+        const infoEl = document.createElement("div");
+        if (idx == 0) {
+          infoEl.classList.add("info-wrapper");
+        } else {
+          infoEl.classList.add("picture-wrapper");
+        }
+        
+        infoEl.innerHTML = dir;
+        headingRow.appendChild(infoEl);
+      });
+      tableEl.appendChild(headingRow);
+
+      csvLines.forEach(l => {
+        const mId = l.split(",")[0];
+        const rowEl = document.createElement("div");
+        rowEl.classList.add("row");
+
+        const infoEl = document.createElement("div");
+        infoEl.classList.add("info-wrapper");
+        infoEl.innerHTML = l.replaceAll('"', '').split(",").slice(0,5).join("<br>");
+        rowEl.appendChild(infoEl);
+
+        ["address", "address_coords", "heading", "station_coords"].forEach(dir => {
+          const imgSrc = `../imgs/${dir}/${mId}.jpg`;
+          const aEl = document.createElement("a");
+          aEl.classList.add("picture-wrapper");
+          aEl.setAttribute("href", imgSrc);
+          aEl.setAttribute("target", "_blank");
+
+          const picEl = document.createElement("img");
+          picEl.classList.add("picture");
+          picEl.src = imgSrc;
+          aEl.appendChild(picEl);
+          rowEl.appendChild(aEl);
+        });
+        tableEl.appendChild(rowEl);
+      });
+    });
+  </script>
+</html>
