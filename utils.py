@@ -53,6 +53,16 @@ def get_heading(pointA, pointB):
   heading_deg = np.rad2deg(heading_rad)
   return (heading_deg + 360.0) % 360.0
 
+def get_dist(pointA, pointB):
+  latA, lonA = np.radians(pointA[0]), np.radians(pointA[1])
+  latB, lonB = np.radians(pointB[0]), np.radians(pointB[1])
+  dlat = latB - latA
+  dlon = lonB - lonA
+  a = np.sin(dlat / 2) ** 2 + np.cos(latA) * np.cos(latB) * np.sin(dlon / 2) ** 2
+  c = np.atan2(a ** 0.5, (1 - a) ** 0.5)
+  R = 6_371_000
+  return R * c
+
 def get_bus_station(key, *, lat, lon, radius=5):
   place_fields = [
     "id",

@@ -43,7 +43,7 @@
       const tableEl = document.getElementById("table");
       const res = await fetch("../data/stops.tgh.csv");
       const csvText = await res.text();
-      const csvLines = csvText.split("\n").slice(1, 200);
+      const csvLines = csvText.split("\n").slice(1, 1500);
 
       const headingRow = document.createElement("div");
       headingRow.classList.add("row");
@@ -62,7 +62,17 @@
       tableEl.appendChild(headingRow);
 
       csvLines.forEach(l => {
-        const mId = l.split(",")[0];
+        const mData = l.split(",");
+        const mId = mData[0];
+        const cAddress = mData[1];
+
+        const searchTerms = [
+          `${mData[1]},${mData[2]}`.replaceAll('"', "") + `, fortaleza, brazil`,
+          `${mData[3]},${mData[4]}`,
+          `${mData[3]},${mData[4]}`,
+          `${mData[5]},${mData[6]}`,
+        ]
+
         const rowEl = document.createElement("div");
         rowEl.classList.add("row");
 
@@ -71,7 +81,7 @@
         infoEl.innerHTML = l.replaceAll('"', '').split(",").slice(0,5).join("<br>");
         rowEl.appendChild(infoEl);
 
-        ["address", "address_coords", "heading", "station_coords"].forEach(dir => {
+        ["address", "address_coords", "heading", "station_coords"].forEach((dir, idx) => {
           const imgSrc = `../imgs/${dir}/${mId}.jpg`;
           const aEl = document.createElement("a");
           aEl.classList.add("picture-wrapper");
@@ -81,7 +91,14 @@
           const picEl = document.createElement("img");
           picEl.classList.add("picture");
           picEl.src = imgSrc;
+
+          const mEl = document.createElement("a");
+          mEl.setAttribute("href", `https://www.google.com/maps/search/${searchTerms[idx]}/`);
+          mEl.setAttribute("target", "_blank");
+          mEl.innerHTML = "map";
+
           aEl.appendChild(picEl);
+          aEl.appendChild(mEl);
           rowEl.appendChild(aEl);
         });
         tableEl.appendChild(rowEl);
