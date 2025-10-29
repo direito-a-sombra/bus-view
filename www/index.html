@@ -43,7 +43,7 @@
       const tableEl = document.getElementById("table");
       const res = await fetch("../data/stops.tgh.csv");
       const csvText = await res.text();
-      const csvLines = csvText.split("\n").slice(1, 1500);
+      const csvLines = csvText.split("\n").slice(1, 2000);
 
       const headingRow = document.createElement("div");
       headingRow.classList.add("row");
