@@ -61,6 +61,16 @@
       });
       tableEl.appendChild(headingRow);
 
+      const rowObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            let mEl = entry.target;
+            mEl.querySelectorAll("img").forEach(imgEl => imgEl.src = imgEl.dataset.src);
+            rowObserver.unobserve(mEl);
+          }
+        });
+      });
+
       csvLines.forEach(l => {
         const mData = l.split(",");
         const mId = mData[0];
@@ -90,7 +100,7 @@
 
           const picEl = document.createElement("img");
           picEl.classList.add("picture");
-          picEl.src = imgSrc;
+          picEl.dataset.src = imgSrc;
 
           const mEl = document.createElement("a");
           mEl.setAttribute("href", `https://www.google.com/maps/search/${searchTerms[idx]}/`);
@@ -102,6 +112,7 @@
           rowEl.appendChild(aEl);
         });
         tableEl.appendChild(rowEl);
+        rowObserver.observe(rowEl);
       });
     });
   </script>
