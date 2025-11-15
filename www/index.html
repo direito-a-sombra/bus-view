@@ -78,9 +78,9 @@
 
         const searchTerms = [
           `${mData[1]},${mData[2]}`.replaceAll('"', "") + `, fortaleza, brazil`,
-          `${mData[3]},${mData[4]}`,
-          `${mData[3]},${mData[4]}`,
-          `${mData[5]},${mData[6]}`,
+          `${mData[4]},${mData[5]}`,
+          `${mData[4]},${mData[5]}`,
+          `${mData[6]},${mData[7]}`,
         ]
 
         const rowEl = document.createElement("div");
@@ -88,7 +88,7 @@
 
         const infoEl = document.createElement("div");
         infoEl.classList.add("info-wrapper");
-        infoEl.innerHTML = l.replaceAll('"', '').split(",").slice(0,5).join("<br>");
+        infoEl.innerHTML = l.replaceAll('"', '').split(",").slice(0,6).join("<br>");
         rowEl.appendChild(infoEl);
 
         ["address", "address_coords", "heading", "station_coords"].forEach((dir, idx) => {
