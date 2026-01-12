@@ -26,14 +26,21 @@ let cimg;
 let cbox;
 
 function preload() {
-  boxes = loadJSON("./boxes.json");
-  cimg = loadImage(`${IMG_DIR}/${OBJECT}/${F2D[cfname]}/${cfname}`);
+  boxes = loadJSON("./boxes_20250111_144945.json");
 }
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(20);
+
+  const noObject = Object.keys(boxes).filter(f => !(OBJECT in boxes[f]));
+  if (noObject.length > 0) {
+    cfname = noObject[0];
+    cidx = Object.keys(boxes).indexOf(cfname);
+  }
+
+  cimg = loadImage(`${IMG_DIR}/${OBJECT}/${F2D[cfname]}/${cfname}`);
 
   cbox = null;
   if (cfname in boxes) {
@@ -114,8 +121,7 @@ function keyReleased() {
       }
     }
   } else if (key == "s" || key == "S") {
-    // TODO: export json
-    saveJSON(boxes, "boxes.json");
+    saveJSON(boxes, "boxes_.json");
   } else if (keyCode == ESCAPE) {
     px = null;
     py = null;
