@@ -1,16 +1,9 @@
 const OBJECT = "bus_stop";
 const IMG_DIR = "../../imgs/training";
 
-const FS = JSON.parse(OBJECT2FILESTRING[OBJECT]);
+let TRAIN_FILES;
+let FNAMES;
 const F2D = {};
-
-for (const [d, fs] of Object.entries(FS)) {
-  for (const f of fs) {
-    F2D[f] = d;
-  }
-}
-
-const FNAMES = Object.keys(F2D);
 
 let boxes;
 /*
@@ -20,24 +13,34 @@ let boxes;
   }
 */
 
-let cidx = 0;
-let cfname = FNAMES[cidx];
+let cidx;
+let cfname;
 let cimg;
 let cbox;
 
 function preload() {
+  TRAIN_FILES = loadJSON("../../data/train_files.json");
   boxes = loadJSON("./boxes_20250111_144945.json");
 }
-
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(20);
 
-  const noObject = Object.keys(boxes).filter(f => !(OBJECT in boxes[f]));
+  for (const [d, fs] of Object.entries(TRAIN_FILES[OBJECT])) {
+    for (const f of fs) {
+      F2D[f] = d;
+    }
+  }
+
+  FNAMES = Object.keys(F2D);
+  cidx = 0;
+  cfname = FNAMES[cidx];
+
+  const noObject = FNAMES.filter(f => !(f in boxes) || !(OBJECT in boxes[f]));
   if (noObject.length > 0) {
     cfname = noObject[0];
-    cidx = Object.keys(boxes).indexOf(cfname);
+    cidx = FNAMES.indexOf(cfname);
   }
 
   cimg = loadImage(`${IMG_DIR}/${OBJECT}/${F2D[cfname]}/${cfname}`);

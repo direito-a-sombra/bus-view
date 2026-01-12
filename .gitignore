@@ -4,3 +4,5 @@ env.py
 *.pyc
 *.pyc.*
 *.py.*
+p5/ImageTagger/*boxes*json
+imgs/training
