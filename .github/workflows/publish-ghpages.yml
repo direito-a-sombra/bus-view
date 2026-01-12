@@ -3,6 +3,11 @@ name: Publish to GH Pages
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - ".github/workflows/publish-ghpages.yml"
+      - "www/**/*"
+      - "imgs/**/*"
+      - "data/**/*"
 
 jobs:
   build:

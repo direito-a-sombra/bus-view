@@ -2,7 +2,7 @@
 import json
 from os import listdir, path
 
-TD = "./imgs/training/bus_stops"
+TD = "./imgs/training/bus_stop"
 
 dirs = sorted([d for d in listdir(TD) if path.isdir(f"{TD}/{d}")])
 dir2files = {d : sorted([f for f in listdir(f"{TD}/{d}") if f.endswith("jpg")]) for d in dirs}
