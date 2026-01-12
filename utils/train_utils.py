@@ -4,9 +4,6 @@ from datetime import datetime
 from os import listdir, path
 from shutil import copy2
 
-# example:
-# TD = "./imgs/training/bus_stop"
-
 def get_obj2dir2files_json(dir, obj):
   TD = f"{dir}/{obj}"
   dirs = sorted([d for d in listdir(TD) if path.isdir(f"{TD}/{d}")])
@@ -38,3 +35,14 @@ def update_data_json(data_path, obj2dir2files):
 
   with open(data_path, "w") as ofp:
     json.dump(data, ofp, separators=(",",":"), sort_keys=True, ensure_ascii=False)
+
+
+# from utils.train_utils import get_obj2dir2files_json, update_data_json
+if __name__ == "__main__":
+  TRAIN_IMG_DIR = "./imgs/training"
+  OBJECT = "bus_stop"
+  DATA_DIR = "./data"
+  DATA_TRAIN_FILE = f"{DATA_DIR}/train_files.json"
+
+  bus_stop_d2f = get_obj2dir2files_json(TRAIN_IMG_DIR, OBJECT)
+  update_data_json(DATA_TRAIN_FILE, bus_stop_d2f)

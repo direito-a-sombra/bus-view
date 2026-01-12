@@ -1,9 +1,9 @@
 const OBJECT = "bus_stop";
-const IMG_DIR = "../../imgs/training";
+const IMG_DIR = "../../imgs";
 
 let TRAIN_FILES;
-let FNAMES;
-const F2D = {};
+let IDS;
+const ID2PATH = {};
 
 let boxes;
 /*
@@ -14,13 +14,13 @@ let boxes;
 */
 
 let cidx;
-let cfname;
+let cid;
 let cimg;
 let cbox;
 
 function preload() {
   TRAIN_FILES = loadJSON("../../data/train_files.json");
-  boxes = loadJSON("./boxes_20250111_144945.json");
+  boxes = loadJSON("./boxes_20260112_150305.json");
 }
 
 function setup() {
@@ -29,26 +29,28 @@ function setup() {
 
   for (const [d, fs] of Object.entries(TRAIN_FILES[OBJECT])) {
     for (const f of fs) {
-      F2D[f] = d;
+      ID2PATH[`${d}/${f}`] = { dir: d, name: f };
     }
   }
 
-  FNAMES = Object.keys(F2D);
+  IDS = Object.keys(ID2PATH);
   cidx = 0;
-  cfname = FNAMES[cidx];
+  cid = IDS[cidx];
 
-  const noObject = FNAMES.filter(f => !(f in boxes) || !(OBJECT in boxes[f]));
+  const noObject = IDS.filter(id => !(id in boxes) || !(OBJECT in boxes[id]));
   if (noObject.length > 0) {
-    cfname = noObject[0];
-    cidx = FNAMES.indexOf(cfname);
+    cid = noObject[0];
+    cidx = IDS.indexOf(cid);
+  } else {
+    console.log("ALL BOXED");
   }
 
-  cimg = loadImage(`${IMG_DIR}/${OBJECT}/${F2D[cfname]}/${cfname}`);
+  cimg = loadImage(`${IMG_DIR}/${ID2PATH[cid].dir}/${ID2PATH[cid].name}`);
 
   cbox = null;
-  if (cfname in boxes) {
-    if (OBJECT in boxes[cfname]) {
-      cbox = boxes[cfname][OBJECT];
+  if (cid in boxes) {
+    if (OBJECT in boxes[cid]) {
+      cbox = boxes[cid][OBJECT];
     }
   }
 }
@@ -107,20 +109,20 @@ function mouseReleased() {
 function keyReleased() {
   if (key == " ") {
     if (cbox) {
-      if (!(cfname in boxes)) {
-        boxes[cfname] = {};
+      if (!(cid in boxes)) {
+        boxes[cid] = {};
       }
-      boxes[cfname][OBJECT] = cbox;  
+      boxes[cid][OBJECT] = cbox;
     }
 
-    cidx = (cidx + 1) % FNAMES.length;
-    cfname = FNAMES[cidx];
-    cimg = loadImage(`${IMG_DIR}/${OBJECT}/${F2D[cfname]}/${cfname}`);
+    cidx = Math.min(cidx + 1, IDS.length - 1);
+    cid = IDS[cidx];
+    cimg = loadImage(`${IMG_DIR}/${ID2PATH[cid].dir}/${ID2PATH[cid].name}`);
 
     cbox = null;
-    if (cfname in boxes) {
-      if (OBJECT in boxes[cfname]) {
-        cbox = boxes[cfname][OBJECT];
+    if (cid in boxes) {
+      if (OBJECT in boxes[cid]) {
+        cbox = boxes[cid][OBJECT];
       }
     }
   } else if (key == "s" || key == "S") {

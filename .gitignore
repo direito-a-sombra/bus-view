@@ -6,3 +6,4 @@ env.py
 *.py.*
 p5/ImageTagger/*boxes*json
 imgs/training
+data/train_files_*json
