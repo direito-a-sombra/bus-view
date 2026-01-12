@@ -5,7 +5,7 @@ import torch
 
 from transformers import Owlv2Processor, Owlv2ForObjectDetection
 
-from .detect_utils import DetectUtils
+from ..utils.detect_utils import DetectUtils
 
 class Owlv2:
   MODEL_NAME = "google/owlv2-large-patch14-ensemble"

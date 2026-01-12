@@ -5,7 +5,7 @@ import torch
 
 from transformers import AutoImageProcessor, DetrForObjectDetection
 
-from .detect_utils import DetectUtils
+from ..utils.detect_utils import DetectUtils
 
 class Detr:
   MODEL_NAME = "facebook/detr-resnet-101"

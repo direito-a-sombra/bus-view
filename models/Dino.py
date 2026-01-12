@@ -5,7 +5,7 @@ import torch
 
 from transformers import AutoProcessor, AutoModelForZeroShotObjectDetection 
 
-from .detect_utils import DetectUtils
+from ..utils.detect_utils import DetectUtils
 
 class Dino:
   MODEL_NAME = "IDEA-Research/grounding-dino-base"
