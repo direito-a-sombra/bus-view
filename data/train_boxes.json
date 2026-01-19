@@ -78,7 +78,8 @@
     "bus_stop": [468, 312, 581, 406]
   },
   "address/18.jpg": {
-    "bus_stop": [264, 322, 446, 417]
+    "bus_stop": [264, 322, 446, 417],
+    "bus_sign": [187, 265, 205, 307]
   },
   "address/182.jpg": {
     "bus_stop": [460, 308, 567, 390]
@@ -126,7 +127,8 @@
     "bus_stop": [315, 322, 449, 423]
   },
   "address/434.jpg": {
-    "bus_stop": [2, 324, 123, 400]
+    "bus_stop": [2, 324, 123, 400],
+    "bus_sign": [193, 289, 204, 318]
   },
   "address/454.jpg": {
     "bus_stop": [572, 328, 640, 428]
@@ -177,7 +179,8 @@
     "bus_stop": [352, 309, 548, 424]
   },
   "address_coords/180.jpg": {
-    "bus_stop": [378, 310, 484, 396]
+    "bus_stop": [378, 310, 484, 396],
+    "bus_sign": [338, 287, 353, 311]
   },
   "address_coords/189.jpg": {
     "bus_stop": [357, 296, 550, 412]
@@ -264,7 +267,8 @@
     "bus_stop": [1, 320, 209, 484]
   },
   "address_coords/467.jpg": {
-    "bus_stop": [326, 314, 396, 386]
+    "bus_stop": [326, 314, 396, 386],
+    "bus_sign": [355, 301, 374, 324]
   },
   "address_coords/473.jpg": {
     "bus_stop": [214, 311, 362, 431]
@@ -348,7 +352,8 @@
     "bus_stop": [48, 315, 259, 416]
   },
   "heading/180.jpg": {
-    "bus_stop": [392, 308, 496, 398]
+    "bus_stop": [392, 308, 496, 398],
+    "bus_sign": [352, 288, 366, 309]
   },
   "heading/182.jpg": {
     "bus_stop": [376, 304, 441, 388]
@@ -369,7 +374,8 @@
     "bus_stop": [452, 293, 638, 493]
   },
   "heading/20.jpg": {
-    "bus_stop": [416, 312, 518, 389]
+    "bus_stop": [416, 312, 518, 389],
+    "bus_sign": [457, 304, 474, 330]
   },
   "heading/222.jpg": {
     "bus_stop": [294, 282, 567, 467]
@@ -537,7 +543,8 @@
     "bus_stop": [392, 308, 492, 384]
   },
   "station_coords/227.jpg": {
-    "bus_stop": [470, 306, 638, 418]
+    "bus_stop": [470, 306, 638, 418],
+    "bus_sign": [260, 304, 273, 326]
   },
   "station_coords/25.jpg": {
     "bus_stop": [175, 313, 378, 424]
@@ -567,7 +574,8 @@
     "bus_stop": [153, 309, 364, 419]
   },
   "station_coords/359.jpg": {
-    "bus_stop": [332, 319, 446, 363]
+    "bus_stop": [332, 319, 446, 363],
+    "bus_sign": [530, 315, 542, 337]
   },
   "station_coords/36.jpg": {
     "bus_stop": [255, 318, 298, 359]
@@ -621,7 +629,8 @@
     "bus_stop": [224, 316, 299, 380]
   },
   "station_coords/541.jpg": {
-    "bus_stop": [292, 313, 444, 418]
+    "bus_stop": [292, 313, 444, 418],
+    "bus_sign": [254, 296, 270, 319]
   },
   "station_coords/566.jpg": {
     "bus_stop": [72, 319, 261, 437]
@@ -786,7 +795,8 @@
     "bus_stop": [40, 307, 107, 359]
   },
   "heading/541.jpg": {
-    "bus_stop": [137, 310, 307, 415]
+    "bus_stop": [137, 310, 307, 415],
+    "bus_sign": [85, 290, 106, 317]
   },
   "heading/1246.jpg": {
     "bus_stop": [345, 318, 368, 356]
@@ -819,7 +829,8 @@
     "bus_stop": [257, 293, 486, 419]
   },
   "heading/628.jpg": {
-    "bus_stop": [315, 295, 461, 405]
+    "bus_stop": [315, 295, 461, 405],
+    "bus_sign": [499, 288, 516, 324]
   },
   "heading/1253.jpg": {
     "bus_stop": [260, 308, 320, 347]
@@ -831,7 +842,8 @@
     "bus_stop": [234, 310, 325, 377]
   },
   "heading/646.jpg": {
-    "bus_stop": [388, 298, 506, 372]
+    "bus_stop": [388, 298, 506, 372],
+    "bus_sign": [333, 307, 343, 323]
   },
   "heading/540.jpg": {
     "bus_stop": [466, 314, 579, 388]
@@ -981,7 +993,8 @@
     "bus_stop": [197, 297, 423, 474]
   },
   "station_coords/1030.jpg": {
-    "bus_stop": [1, 323, 131, 457]
+    "bus_stop": [1, 323, 131, 457],
+    "bus_sign": [252, 300, 266, 331]
   },
   "station_coords/1246.jpg": {
     "bus_stop": [499, 318, 531, 372]
@@ -1093,5 +1106,281 @@
   },
   "station_coords/1100.jpg": {
     "bus_stop": [491, 290, 640, 394]
+  },
+  "address/1048.jpg": {
+    "bus_sign": [392, 314, 416, 361]
+  },
+  "address/106.jpg": {
+    "bus_sign": [41, 251, 77, 330]
+  },
+  "address/133.jpg": {
+    "bus_sign": [189, 286, 204, 311]
+  },
+  "address/160.jpg": {
+    "bus_sign": [259, 246, 277, 295]
+  },
+  "address/161.jpg": {
+    "bus_sign": [272, 272, 294, 305]
+  },
+  "address/210.jpg": {
+    "bus_sign": [391, 281, 416, 322]
+  },
+  "address/236.jpg": {
+    "bus_sign": [141, 314, 164, 352]
+  },
+  "address/252.jpg": {
+    "bus_sign": [272, 248, 290, 291]
+  },
+  "address/258.jpg": {
+    "bus_sign": [389, 252, 420, 343]
+  },
+  "address/313.jpg": {
+    "bus_sign": [153, 263, 180, 308]
+  },
+  "address/33.jpg": {
+    "bus_sign": [287, 276, 305, 306]
+  },
+  "address/346.jpg": {
+    "bus_sign": [97, 250, 122, 280]
+  },
+  "address/347.jpg": {
+    "bus_sign": [186, 271, 207, 316]
+  },
+  "address/356.jpg": {
+    "bus_sign": [163, 293, 180, 321]
+  },
+  "address/36.jpg": {
+    "bus_sign": [598, 303, 618, 332]
+  },
+  "address/464.jpg": {
+    "bus_sign": [221, 257, 242, 293]
+  },
+  "address/469.jpg": {
+    "bus_sign": [65, 283, 95, 324]
+  },
+  "address/486.jpg": {
+    "bus_sign": [151, 267, 169, 301]
+  },
+  "address/487.jpg": {
+    "bus_sign": [202, 266, 233, 320]
+  },
+  "address/512.jpg": {
+    "bus_sign": [555, 257, 573, 297]
+  },
+  "address/519.jpg": {
+    "bus_sign": [139, 278, 168, 328]
+  },
+  "address/523.jpg": {
+    "bus_sign": [586, 295, 607, 323]
+  },
+  "address/529.jpg": {
+    "bus_sign": [123, 310, 148, 356]
+  },
+  "address/557.jpg": {
+    "bus_sign": [40, 278, 61, 308]
+  },
+  "address/590.jpg": {
+    "bus_sign": [498, 310, 512, 332]
+  },
+  "address/602.jpg": {
+    "bus_sign": [560, 293, 588, 349]
+  },
+  "address_coords/1030.jpg": {
+    "bus_sign": [511, 305, 525, 328]
+  },
+  "address_coords/122.jpg": {
+    "bus_sign": [409, 286, 425, 315]
+  },
+  "address_coords/161.jpg": {
+    "bus_sign": [259, 271, 281, 308]
+  },
+  "address_coords/265.jpg": {
+    "bus_sign": [282, 315, 298, 340]
+  },
+  "address_coords/312.jpg": {
+    "bus_sign": [185, 249, 209, 286]
+  },
+  "address_coords/327.jpg": {
+    "bus_sign": [131, 297, 144, 316]
+  },
+  "address_coords/37.jpg": {
+    "bus_sign": [570, 301, 585, 318]
+  },
+  "address_coords/371.jpg": {
+    "bus_sign": [474, 280, 494, 306]
+  },
+  "address_coords/38.jpg": {
+    "bus_sign": [228, 294, 239, 310]
+  },
+  "address_coords/469.jpg": {
+    "bus_sign": [245, 285, 262, 330]
+  },
+  "address_coords/488.jpg": {
+    "bus_sign": [238, 305, 254, 330]
+  },
+  "address_coords/489.jpg": {
+    "bus_sign": [549, 249, 588, 340]
+  },
+  "address_coords/523.jpg": {
+    "bus_sign": [525, 299, 542, 324]
+  },
+  "address_coords/541.jpg": {
+    "bus_sign": [547, 290, 568, 317]
+  },
+  "address_coords/551.jpg": {
+    "bus_sign": [400, 242, 429, 281]
+  },
+  "address_coords/558.jpg": {
+    "bus_sign": [354, 278, 373, 308]
+  },
+  "address_coords/559.jpg": {
+    "bus_sign": [176, 270, 196, 299]
+  },
+  "address_coords/564.jpg": {
+    "bus_sign": [290, 297, 305, 317]
+  },
+  "address_coords/596.jpg": {
+    "bus_sign": [164, 265, 185, 296]
+  },
+  "address_coords/601.jpg": {
+    "bus_sign": [209, 305, 223, 322]
+  },
+  "address_coords/602.jpg": {
+    "bus_sign": [566, 273, 617, 347]
+  },
+  "address_coords/619.jpg": {
+    "bus_sign": [159, 240, 180, 299]
+  },
+  "address_coords/638.jpg": {
+    "bus_sign": [399, 310, 411, 331]
+  },
+  "heading/1015.jpg": {
+    "bus_sign": [170, 254, 190, 286]
+  },
+  "heading/125.jpg": {
+    "bus_sign": [31, 232, 71, 283]
+  },
+  "heading/161.jpg": {
+    "bus_sign": [166, 266, 189, 303]
+  },
+  "heading/210.jpg": {
+    "bus_sign": [65, 225, 104, 294]
+  },
+  "heading/268.jpg": {
+    "bus_sign": [358, 261, 375, 296]
+  },
+  "heading/327.jpg": {
+    "bus_sign": [82, 291, 105, 324]
+  },
+  "heading/372.jpg": {
+    "bus_sign": [156, 311, 169, 333]
+  },
+  "heading/38.jpg": {
+    "bus_sign": [147, 294, 174, 331]
+  },
+  "heading/423.jpg": {
+    "bus_sign": [114, 264, 138, 311]
+  },
+  "heading/450.jpg": {
+    "bus_sign": [281, 258, 298, 312]
+  },
+  "heading/469.jpg": {
+    "bus_sign": [619, 271, 640, 333]
+  },
+  "heading/489.jpg": {
+    "bus_sign": [497, 299, 511, 317]
+  },
+  "heading/512.jpg": {
+    "bus_sign": [200, 268, 215, 301]
+  },
+  "heading/559.jpg": {
+    "bus_sign": [266, 273, 283, 301]
+  },
+  "heading/569.jpg": {
+    "bus_sign": [163, 293, 179, 311]
+  },
+  "heading/599.jpg": {
+    "bus_sign": [192, 281, 208, 306]
+  },
+  "heading/602.jpg": {
+    "bus_sign": [171, 283, 206, 343]
+  },
+  "heading/624.jpg": {
+    "bus_sign": [472, 289, 489, 319]
+  },
+  "heading/638.jpg": {
+    "bus_sign": [434, 310, 449, 331]
+  },
+  "station_coords/133.jpg": {
+    "bus_sign": [213, 288, 227, 311]
+  },
+  "station_coords/161.jpg": {
+    "bus_sign": [223, 270, 244, 305]
+  },
+  "station_coords/210.jpg": {
+    "bus_sign": [63, 225, 99, 296]
+  },
+  "station_coords/258.jpg": {
+    "bus_sign": [346, 251, 373, 338]
+  },
+  "station_coords/263.jpg": {
+    "bus_sign": [386, 308, 397, 334]
+  },
+  "station_coords/268.jpg": {
+    "bus_sign": [307, 261, 327, 296]
+  },
+  "station_coords/269.jpg": {
+    "bus_sign": [267, 250, 284, 275]
+  },
+  "station_coords/272.jpg": {
+    "bus_sign": [254, 265, 278, 307]
+  },
+  "station_coords/311.jpg": {
+    "bus_sign": [96, 238, 127, 280]
+  },
+  "station_coords/340.jpg": {
+    "bus_sign": [99, 280, 114, 306]
+  },
+  "station_coords/353.jpg": {
+    "bus_sign": [65, 300, 79, 321]
+  },
+  "station_coords/356.jpg": {
+    "bus_sign": [290, 295, 305, 323]
+  },
+  "station_coords/469.jpg": {
+    "bus_sign": [380, 285, 394, 333]
+  },
+  "station_coords/473.jpg": {
+    "bus_sign": [233, 314, 250, 334]
+  },
+  "station_coords/488.jpg": {
+    "bus_sign": [213, 307, 231, 333]
+  },
+  "station_coords/512.jpg": {
+    "bus_sign": [247, 272, 259, 303]
+  },
+  "station_coords/551.jpg": {
+    "bus_sign": [72, 286, 89, 306]
+  },
+  "station_coords/559.jpg": {
+    "bus_sign": [229, 272, 247, 302]
+  },
+  "station_coords/590.jpg": {
+    "bus_sign": [356, 300, 371, 332]
+  },
+  "station_coords/596.jpg": {
+    "bus_sign": [225, 270, 245, 299]
+  },
+  "station_coords/601.jpg": {
+    "bus_sign": [40, 301, 56, 322]
+  },
+  "station_coords/602.jpg": {
+    "bus_sign": [258, 285, 288, 340]
+  },
+  "station_coords/612.jpg": {
+    "bus_sign": [249, 279, 272, 315]
+  },
+  "station_coords/616.jpg": {
+    "bus_sign": [215, 292, 232, 319]
   }
 }

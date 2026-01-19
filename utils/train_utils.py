@@ -27,7 +27,7 @@ def update_data_json(data_path, obj2dir2files):
 
   for d,fs in dir2files.items():
     cfs = data[obj].get(d, [])
-    data[obj][d] = list(set(cfs + fs))
+    data[obj][d] = sorted(list(set(cfs + fs)))
 
   dt_str = datetime.now().strftime("%Y%m%d_%H%M%S")
   dst_path = data_path.replace(".json", f"_{dt_str}.json")
@@ -40,7 +40,7 @@ def update_data_json(data_path, obj2dir2files):
 # from utils.train_utils import get_obj2dir2files_json, update_data_json
 if __name__ == "__main__":
   TRAIN_IMG_DIR = "./imgs/training"
-  OBJECT = "bus_stop"
+  OBJECT = "bus_sign"
   DATA_DIR = "./data"
   DATA_TRAIN_FILE = f"{DATA_DIR}/train_files.json"
 

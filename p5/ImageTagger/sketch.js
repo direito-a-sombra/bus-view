@@ -1,4 +1,4 @@
-const OBJECT = "bus_stop";
+const OBJECT = "bus_sign";
 const IMG_DIR = "../../imgs";
 
 let TRAIN_FILES;
@@ -20,7 +20,7 @@ let cbox;
 
 function preload() {
   TRAIN_FILES = loadJSON("../../data/train_files.json");
-  boxes = loadJSON("./boxes_20260112_150305.json");
+  boxes = loadJSON("../../data/train_boxes.json");
 }
 
 function setup() {
