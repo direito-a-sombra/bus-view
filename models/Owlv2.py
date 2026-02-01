@@ -1,11 +1,13 @@
 from warnings import simplefilter
 simplefilter(action="ignore")
 
+import sys
 import torch
 
 from transformers import Owlv2Processor, Owlv2ForObjectDetection
 
-from ..utils.detect_utils import DetectUtils
+sys.path.append("..")
+from utils.detect_utils import DetectUtils
 
 class Owlv2:
   MODEL_NAME = "google/owlv2-large-patch14-ensemble"

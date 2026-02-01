@@ -2,7 +2,7 @@ from torch import cuda
 from ultralytics import YOLO
 
 class Yolo:
-  MODEL_NAME = "yolo11l"
+  MODEL_NAME = "yolo11l.pt"
   DEVICE = "cuda" if cuda.is_available() else "cpu"
 
   @classmethod
@@ -16,7 +16,7 @@ class Yolo:
 
   def __init__(self, model=None):
     model_name = Yolo.MODEL_NAME if model is None else model
-    self.model = YOLO(f"{model_name}.pt")
+    self.model = YOLO(model_name)
 
   def run_object_detection(self, img, tholds):
     # TODO: pass label ids to predict: predict(classes=labelIDs, ...)

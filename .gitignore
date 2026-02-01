@@ -6,4 +6,10 @@ env.py
 *.py.*
 p5/ImageTagger/*boxes*json
 imgs/training
-data/train_files_*json
+data/training/train_files_*json
+data/objs/**/*.json
+datasets/*
+runs/*
+bus-view.yaml
+yolo*.pt
+lightning_logs/*

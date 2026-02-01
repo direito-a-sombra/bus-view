@@ -1,11 +1,13 @@
 from warnings import simplefilter
 simplefilter(action="ignore")
 
+import sys
 import torch
 
 from transformers import AutoImageProcessor, DetrForObjectDetection
 
-from ..utils.detect_utils import DetectUtils
+sys.path.append("..")
+from utils.detect_utils import DetectUtils
 
 class Detr:
   MODEL_NAME = "facebook/detr-resnet-101"

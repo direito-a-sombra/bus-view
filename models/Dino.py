@@ -1,11 +1,13 @@
 from warnings import simplefilter
 simplefilter(action="ignore")
 
+import sys
 import torch
 
 from transformers import AutoProcessor, AutoModelForZeroShotObjectDetection 
 
-from ..utils.detect_utils import DetectUtils
+sys.path.append("..")
+from utils.detect_utils import DetectUtils
 
 class Dino:
   MODEL_NAME = "IDEA-Research/grounding-dino-base"
