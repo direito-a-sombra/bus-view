@@ -13,3 +13,4 @@ runs/*
 bus-view.yaml
 yolo*.pt
 lightning_logs/*
+!data/objs/*2*.json
