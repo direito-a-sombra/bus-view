@@ -31,7 +31,7 @@ class Ocr:
 
   def top_words(self, fpath, area_thold, score_thold=0.02):
     result = self.reader.readtext(fpath)
-    mimg = PImage.open(fpath).convert("L")
+    mimg = PImage.open(fpath).convert("L").convert("RGB")
 
     words = []
     for b,t,s in result:
