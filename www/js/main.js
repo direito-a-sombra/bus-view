@@ -4,8 +4,51 @@ const BOXES_URL = "https://direito-a-sombra.github.io/bus-view/data/objs/label2b
 const stops = [];
 const boxes = {};
 
+let selEl;
+
 function fetchJson(url) {
-  return fetch(url).then(res => res.json());//.then(data => Object.assign(obj, data));
+  return fetch(url).then(res => res.json());
+}
+
+function handleClick(evt) {
+  if (selEl) selEl.classList.remove("selected");
+
+  if (evt.currentTarget != selEl) {
+    selEl = evt.currentTarget;
+    selEl.classList.add("selected");
+  } else {
+    selEl = null;
+  }
+}
+
+function createImageEl(stop) {
+  const imgSrc = `../imgs/${stop.image}`;
+
+  const imgEl = document.createElement("img");
+  imgEl.classList.add("image");
+  imgEl.dataset.src = imgSrc;
+
+  return imgEl;
+}
+
+function createInfoEl(stop) {
+  const stop_info_str = `${stop.id}:<br>${stop.address} - ${stop.neighborhood} (${stop.lat}, ${stop.lon}) `;
+  const searchTerms = [
+      `${stop.address}, fortaleza, brazil`,
+      `${stop.lat},${stop.lon}`,
+    ];
+
+  const infoEl = document.createElement("div");
+  infoEl.classList.add("info-wrapper");
+  infoEl.innerHTML = stop_info_str;
+
+  const mEl = document.createElement("a");
+  mEl.setAttribute("href", `https://www.google.com/maps/search/${searchTerms[0]}/`);
+  mEl.setAttribute("target", "_blank");
+  mEl.innerHTML = "map";
+  infoEl.appendChild(mEl);
+
+  return infoEl;
 }
 
 function loadImages(stops) {
@@ -21,45 +64,20 @@ function loadImages(stops) {
     });
   });
 
-  stops.forEach(stop => {
-    const stop_info = [stop.id, stop.address, stop.neighborhood, `${stop.lat}, ${stop.lon}`];
+  stops.slice(0, 300).forEach((stop, idx) => {
+    const itemEl = document.createElement("div");
+    itemEl.classList.add("item-container", `col-${idx%5}`);
 
-    const searchTerms = [
-      `${stop.address}, fortaleza, brazil`,
-      `${stop.lat},${stop.lon}`,
-    ];
+    const infoEl = createInfoEl(stop);
+    const imgEl = createImageEl(stop);
 
-    const rowEl = document.createElement("div");
-    rowEl.classList.add("row");
+    itemEl.appendChild(imgEl);
+    itemEl.appendChild(infoEl);
 
-    // INFO COLUMN
-    const infoEl = document.createElement("div");
-    infoEl.classList.add("info-wrapper");
-    infoEl.innerHTML = stop_info.join("<br>");
-    rowEl.appendChild(infoEl);
+    itemEl.addEventListener("click", handleClick);
 
-    // IMAGE COLUMN
-    const imgSrc = `../imgs/${stop.image}`;
-    const aEl = document.createElement("a");
-    aEl.classList.add("picture-wrapper");
-    aEl.setAttribute("href", imgSrc);
-    aEl.setAttribute("target", "_blank");
-
-    const picEl = document.createElement("img");
-    picEl.classList.add("picture");
-    picEl.dataset.src = imgSrc;
-
-    const mEl = document.createElement("a");
-    mEl.setAttribute("href", `https://www.google.com/maps/search/${searchTerms[0]}/`);
-    mEl.setAttribute("target", "_blank");
-    mEl.innerHTML = "map";
-
-    aEl.appendChild(picEl);
-    aEl.appendChild(mEl);
-    rowEl.appendChild(aEl);
-
-    tableEl.appendChild(rowEl);
-    rowObserver.observe(rowEl);
+    tableEl.appendChild(itemEl);
+    rowObserver.observe(itemEl);
   });
 }
 
