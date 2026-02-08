@@ -29,6 +29,6 @@ jobs:
         sed -i -e 's/\.\.\/\.\.\/imgs/\.\.\/imgs/g' test/index.html
         sed -i -e 's/\.\.\/\.\.\/data/\.\.\/data/g' test/index.html
         touch .nojekyll
-        git add .nojekyll test/ imgs/ data/stops.tgh.csv data/objs/*.json
+        git add .nojekyll test/ imgs/ data/stops.tgh.* data/objs/*.json
         git commit -m $COMMIT_MSG
         git push -f origin gh-pages
