@@ -10,7 +10,30 @@ function fetchJson(url) {
   return fetch(url).then(res => res.json());
 }
 
-function handleClick(evt) {
+function handleButtonToggle(evt) {
+  if (!evt.target.dataset.id) return;
+  console.log(evt.target.dataset.id);
+}
+
+function createButton(labelText, id) {
+  const buttEl = document.createElement("label");
+  buttEl.classList.add("toggle-button");
+
+  const checkEl = document.createElement("input");
+  checkEl.setAttribute("type", "checkbox");
+  checkEl.classList.add("toggle-input");
+  checkEl.dataset.id = id;
+
+  const labelEl = document.createElement("span");
+  labelEl.classList.add("toggle-label");
+  labelEl.innerHTML = labelText;
+
+  buttEl.appendChild(checkEl);
+  buttEl.appendChild(labelEl);
+  return buttEl;
+}
+
+function handleImageClick(evt) {
   if (selEl) selEl.classList.remove("selected");
 
   if (evt.currentTarget != selEl) {
@@ -34,9 +57,9 @@ function createImageEl(stop) {
 function createInfoEl(stop) {
   const stop_info_str = `${stop.id}:<br>${stop.address} - ${stop.neighborhood} (${stop.lat}, ${stop.lon}) `;
   const searchTerms = [
-      `${stop.address}, fortaleza, brazil`,
-      `${stop.lat},${stop.lon}`,
-    ];
+    `${stop.address}, fortaleza, brazil`,
+    `${stop.lat},${stop.lon}`,
+  ];
 
   const infoEl = document.createElement("div");
   infoEl.classList.add("info-wrapper");
@@ -49,6 +72,15 @@ function createInfoEl(stop) {
   infoEl.appendChild(mEl);
 
   return infoEl;
+}
+
+function createMenu(labels) {
+  const menuEl = document.getElementById("menu");
+  labels.forEach(label => {
+    const buttEl = createButton(label.replace("_", " "), label);
+    buttEl.addEventListener("click", handleButtonToggle);
+    menuEl.appendChild(buttEl);
+  });
 }
 
 function loadImages(stops) {
@@ -66,7 +98,8 @@ function loadImages(stops) {
 
   stops.slice(0, 300).forEach((stop, idx) => {
     const itemEl = document.createElement("div");
-    itemEl.classList.add("item-container", `col-${idx%5}`);
+    itemEl.classList.add("item-container", `col-${idx % 5}`);
+    itemEl.dataset.id = stop.id;
 
     const infoEl = createInfoEl(stop);
     const imgEl = createImageEl(stop);
@@ -74,7 +107,7 @@ function loadImages(stops) {
     itemEl.appendChild(imgEl);
     itemEl.appendChild(infoEl);
 
-    itemEl.addEventListener("click", handleClick);
+    itemEl.addEventListener("click", handleImageClick);
 
     tableEl.appendChild(itemEl);
     rowObserver.observe(itemEl);
@@ -89,5 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
     Object.assign(stops, data[0].toSorted((a, b) => a.id - b.id));
     Object.assign(boxes, data[1]);
     loadImages(stops);
+    createMenu(Object.keys(boxes));
   });
 });
