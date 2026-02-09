@@ -33,7 +33,6 @@
 
 .toggle-button .toggle-input:checked + .toggle-label {
   background-color: #cdf400;
-  
 }
 
 /* ****** */
@@ -54,6 +53,8 @@
   width: 20%;
   overflow: hidden;
   transition: all 0.1s linear;
+  pointer-events: unset;
+  user-select: none;
 }
 
 .info-wrapper {
@@ -67,6 +68,11 @@
   width: 100%;
   cursor: pointer;
   aspect-ratio: 1/1;
+}
+
+.item-container.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .item-container.selected {

@@ -1,18 +1,43 @@
 const STOPS_URL = "https://direito-a-sombra.github.io/bus-view/data/stops.tgh.json";
-const BOXES_URL = "https://direito-a-sombra.github.io/bus-view/data/objs/label2boxes.json";
+const BOXES_URL = "https://direito-a-sombra.github.io/bus-view/data/objs/stops2boxes.json";
 
 const stops = [];
 const boxes = {};
+const labels = [];
+const id2objsets = {};
 
-let selEl;
+let selectedImage;
+let selectedObjects = new Set();
 
 function fetchJson(url) {
   return fetch(url).then(res => res.json());
 }
 
+function filterImages() {
+  const tableEl = document.getElementById("table");
+
+  Array.from(tableEl.children).forEach(el => {
+    const id = el.dataset.id;
+    const elObjs = id2objsets[id];
+
+    if (selectedObjects.size == 0 || selectedObjects.difference(elObjs).size == 0) {
+      el.classList.remove("hidden");
+    } else {
+      el.classList.add("hidden");
+    }
+  });
+}
+
 function handleButtonToggle(evt) {
   if (!evt.target.dataset.id) return;
-  console.log(evt.target.dataset.id);
+
+  if (evt.target.checked) {
+    selectedObjects.add(evt.target.dataset.id);
+  } else {
+    selectedObjects.delete(evt.target.dataset.id);
+  }
+
+  filterImages();
 }
 
 function createButton(labelText, id) {
@@ -34,13 +59,13 @@ function createButton(labelText, id) {
 }
 
 function handleImageClick(evt) {
-  if (selEl) selEl.classList.remove("selected");
+  if (selectedImage) selectedImage.classList.remove("selected");
 
-  if (evt.currentTarget != selEl) {
-    selEl = evt.currentTarget;
-    selEl.classList.add("selected");
+  if (evt.currentTarget != selectedImage) {
+    selectedImage = evt.currentTarget;
+    selectedImage.classList.add("selected");
   } else {
-    selEl = null;
+    selectedImage = null;
   }
 }
 
@@ -121,7 +146,13 @@ document.addEventListener("DOMContentLoaded", () => {
   ]).then(data => {
     Object.assign(stops, data[0].toSorted((a, b) => a.id - b.id));
     Object.assign(boxes, data[1]);
+    Object.assign(labels, [...stops.reduce((a, c) => new Set([...a, ...c.objects]), new Set())]);
+
+    stops.forEach(stop => {
+      id2objsets[stop.id] = new Set(stop.objects);
+    });
+
     loadImages(stops);
-    createMenu(Object.keys(boxes));
+    createMenu(labels);
   });
 });
