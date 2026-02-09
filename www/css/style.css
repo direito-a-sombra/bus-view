@@ -53,7 +53,7 @@
   width: 20%;
   overflow: hidden;
   transition: width 0.1s linear, margin 0.1s linear;
-  pointer-events: unset;
+  pointer-events: none;
   user-select: none;
 }
 
@@ -74,6 +74,7 @@
   display: block;
   width: 100%;
   aspect-ratio: 1/1;
+  filter: grayscale(1);
 }
 
 .image-boxes {
@@ -88,9 +89,12 @@
   border: 2px #cdf400 solid;
 }
 
-.item-container.hidden {
-  opacity: 0;
-  pointer-events: none;
+.item-container.active {
+  pointer-events: unset;
+}
+
+.item-container.active .image {
+  filter: grayscale(0);
 }
 
 .item-container.selected {

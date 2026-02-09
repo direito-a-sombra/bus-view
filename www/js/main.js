@@ -20,10 +20,12 @@ function filterImages() {
     const id = el.dataset.id;
     const elObjs = id2objsets[id];
 
-    if (selectedObjects.size == 0 || selectedObjects.difference(elObjs).size == 0) {
-      el.classList.remove("hidden");
+    if (selectedObjects.size == 0 || selectedObjects.difference(elObjs).size != 0) {
+      // el.classList.remove("hidden");
+      el.classList.remove("active");
     } else {
-      el.classList.add("hidden");
+      // el.classList.add("hidden");
+      el.classList.add("active");
     }
   });
 }
