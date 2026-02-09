@@ -28,7 +28,7 @@ function filterImages() {
   });
 }
 
-function handleButtonToggle(evt) {
+function handleMenuToggle(evt) {
   if (!evt.target.dataset.id) return;
 
   if (evt.target.checked) {
@@ -36,6 +36,12 @@ function handleButtonToggle(evt) {
   } else {
     selectedObjects.delete(evt.target.dataset.id);
   }
+
+  if (selectedImage) {
+    selectedImage.classList.remove("selected");
+    clearBoxes(selectedImage);
+    selectedImage = null;
+  };
 
   filterImages();
 }
@@ -58,12 +64,44 @@ function createButton(labelText, id) {
   return buttEl;
 }
 
+function clearBoxes(el) {
+  const boxesEl = el.querySelector(".image-boxes");
+  boxesEl.innerHTML = "";
+}
+
+function drawBoxes(el) {
+  const boxesEl = el.querySelector(".image-boxes");
+  boxesEl.innerHTML = "";
+
+  const objs = boxes[el.dataset.id];
+  objs.forEach(o => {
+    if (selectedObjects.size == 0 || !selectedObjects.has(o.label)) return;
+
+    const box = o.box;
+    const bEl = document.createElement("div");
+    bEl.classList.add("box");
+    boxesEl.appendChild(bEl);
+
+    bEl.style.left = `${box[0] * 100}%`;
+    bEl.style.top = `${box[1] * 100}%`;
+
+    bEl.style.width = `${(box[2] - box[0]) * 100}%`;
+    bEl.style.height = `${(box[3] - box[1]) * 100}%`;
+  });
+}
+
 function handleImageClick(evt) {
-  if (selectedImage) selectedImage.classList.remove("selected");
+  if (selectedImage) {
+    selectedImage.classList.remove("selected");
+    clearBoxes(selectedImage);
+  };
 
   if (evt.currentTarget != selectedImage) {
     selectedImage = evt.currentTarget;
-    selectedImage.classList.add("selected");
+    setTimeout(() => {
+      selectedImage.classList.add("selected");
+      drawBoxes(selectedImage);
+    }, 250);
   } else {
     selectedImage = null;
   }
@@ -72,11 +110,19 @@ function handleImageClick(evt) {
 function createImageEl(stop) {
   const imgSrc = `../imgs/${stop.image}`;
 
+  const imgWrapperEl = document.createElement("div");
+  imgWrapperEl.classList.add("image-wrapper");
+
   const imgEl = document.createElement("img");
   imgEl.classList.add("image");
   imgEl.dataset.src = imgSrc;
 
-  return imgEl;
+  const imgBoxEl = document.createElement("div");
+  imgBoxEl.classList.add("image-boxes");
+
+  imgWrapperEl.appendChild(imgEl);
+  imgWrapperEl.appendChild(imgBoxEl);
+  return imgWrapperEl;
 }
 
 function createInfoEl(stop) {
@@ -103,7 +149,7 @@ function createMenu(labels) {
   const menuEl = document.getElementById("menu");
   labels.forEach(label => {
     const buttEl = createButton(label.replace("_", " "), label);
-    buttEl.addEventListener("click", handleButtonToggle);
+    buttEl.addEventListener("click", handleMenuToggle);
     menuEl.appendChild(buttEl);
   });
 }
@@ -121,7 +167,7 @@ function loadImages(stops) {
     });
   });
 
-  stops.slice(0, 300).forEach((stop, idx) => {
+  stops.forEach((stop, idx) => {
     const itemEl = document.createElement("div");
     itemEl.classList.add("item-container", `col-${idx % 5}`);
     itemEl.dataset.id = stop.id;

@@ -52,7 +52,7 @@
   flex-direction: row;
   width: 20%;
   overflow: hidden;
-  transition: all 0.1s linear;
+  transition: width 0.1s linear, margin 0.1s linear;
   pointer-events: unset;
   user-select: none;
 }
@@ -63,11 +63,29 @@
   transition: all 0.1s linear;
 }
 
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
 .image {
   display: block;
   width: 100%;
-  cursor: pointer;
   aspect-ratio: 1/1;
+}
+
+.image-boxes {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image-boxes .box {
+  position: absolute;
+  border: 2px #cdf400 solid;
 }
 
 .item-container.hidden {
