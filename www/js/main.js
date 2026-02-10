@@ -20,12 +20,15 @@ function filterImages() {
     const id = el.dataset.id;
     const elObjs = id2objsets[id];
 
-    if (selectedObjects.size == 0 || selectedObjects.difference(elObjs).size != 0) {
-      // el.classList.remove("hidden");
+    if (selectedObjects.size == 0) {
+      el.classList.remove("active");
+      el.classList.remove("inactive");
+    } else if (selectedObjects.difference(elObjs).size != 0) {
+      el.classList.add("inactive");
       el.classList.remove("active");
     } else {
-      // el.classList.add("hidden");
       el.classList.add("active");
+      el.classList.remove("inactive");
     }
   });
 }
@@ -93,14 +96,20 @@ function drawBoxes(el) {
 }
 
 function handleImageClick(evt) {
+  const infoEl = document.getElementById("image-info");
+
   if (selectedImage) {
     selectedImage.classList.remove("selected");
     clearBoxes(selectedImage);
+    infoEl.classList.remove("show");
+    setTimeout(() => infoEl.innerHTML = "", 100);
   };
 
   if (evt.currentTarget != selectedImage) {
     selectedImage = evt.currentTarget;
     setTimeout(() => {
+      infoEl.appendChild(createInfoEl(stops[selectedImage.dataset.id]));
+      infoEl.classList.add("show");
       selectedImage.classList.add("selected");
       drawBoxes(selectedImage);
     }, 250);
@@ -174,12 +183,8 @@ function loadImages(stops) {
     itemEl.classList.add("item-container", `col-${idx % 5}`);
     itemEl.dataset.id = stop.id;
 
-    const infoEl = createInfoEl(stop);
     const imgEl = createImageEl(stop);
-
     itemEl.appendChild(imgEl);
-    itemEl.appendChild(infoEl);
-
     itemEl.addEventListener("click", handleImageClick);
 
     tableEl.appendChild(itemEl);
