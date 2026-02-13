@@ -43,8 +43,7 @@ function handleMenuToggle(evt) {
   }
 
   if (selectedImage) {
-    selectedImage.classList.remove("selected");
-    clearBoxes(selectedImage);
+    clearSelectedImage();
     selectedImage = null;
   };
 
@@ -69,9 +68,13 @@ function createButton(labelText, id) {
   return buttEl;
 }
 
-function clearBoxes(el) {
-  const boxesEl = el.querySelector(".image-boxes");
+function clearSelectedImage() {
+  const infoEl = document.getElementById("image-info");
+  const boxesEl = selectedImage.querySelector(".image-boxes");
+  selectedImage.classList.remove("selected");
+  infoEl.classList.remove("show");
   boxesEl.innerHTML = "";
+  setTimeout(() => infoEl.innerHTML = "", 100);
 }
 
 function drawBoxes(el) {
@@ -99,10 +102,7 @@ function handleImageClick(evt) {
   const infoEl = document.getElementById("image-info");
 
   if (selectedImage) {
-    selectedImage.classList.remove("selected");
-    clearBoxes(selectedImage);
-    infoEl.classList.remove("show");
-    setTimeout(() => infoEl.innerHTML = "", 100);
+    clearSelectedImage();
   };
 
   if (evt.currentTarget != selectedImage) {
