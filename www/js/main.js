@@ -52,7 +52,7 @@ function handleMenuToggle(evt) {
 
 function createButton(labelText, id) {
   const buttEl = document.createElement("label");
-  buttEl.classList.add("toggle-button");
+  buttEl.classList.add("toggle-button", id);
 
   const checkEl = document.createElement("input");
   checkEl.setAttribute("type", "checkbox");
@@ -87,7 +87,7 @@ function drawBoxes(el) {
 
     const box = o.box;
     const bEl = document.createElement("div");
-    bEl.classList.add("box");
+    bEl.classList.add("box", o.label);
     boxesEl.appendChild(bEl);
 
     bEl.style.left = `${box[0] * 100}%`;

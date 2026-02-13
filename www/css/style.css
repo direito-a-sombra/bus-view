@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+:root {
+  --color-hl-0: #cdf400;
+  --color-hl-1: #34541f;
+  --color-hl-2: #222324;
+  --color-hl-3: #c9da2a;
+}
+
 /* **** */
 /* MENU */
 .menu-wrapper {
@@ -25,6 +32,11 @@
 .toggle-button {
   user-select: none;
   cursor: pointer;
+  padding: 10px 18px;
+  border: 1px #444 solid;
+  border-radius: 2px;
+  background-color: #eee;
+  color: #222;
 }
 
 .toggle-button .toggle-input {
@@ -33,14 +45,21 @@
 
 .toggle-button .toggle-input + .toggle-label {
   display: inline-block;
-  padding: 10px 18px;
-  background-color: #eee;
-  border: 1px #444 solid;
-  border-radius: 2px;
 }
 
-.toggle-button .toggle-input:checked + .toggle-label {
-  background-color: #cdf400;
+.toggle-button.person:has(.toggle-input:checked) {
+  background-color: var(--color-hl-0);
+}
+.toggle-button.tree:has(.toggle-input:checked) {
+  background-color: var(--color-hl-1);
+  color: #eee;
+}
+.toggle-button.bus_stop:has(.toggle-input:checked) {
+  background-color: var(--color-hl-2);
+  color: #eee;
+}
+.toggle-button.bus_sign:has(.toggle-input:checked) {
+  background-color: var(--color-hl-3);
 }
 
 /* ****** */
@@ -59,8 +78,12 @@
   flex-direction: column;
   flex-direction: row;
   width: 20%;
+  margin-left: unset;
   overflow: hidden;
-  transition: width 0.1s linear, margin 0.1s linear, opacity 0.1s linear;
+  opacity: 1;
+  will-change: width, margin-left, opacity;
+  transition: width 0.1s linear, margin-left 0.1s linear, opacity 0.1s linear;
+  -moz-transition: width 0.1s linear, margin-left 0.1s linear, opacity 0.25s linear;
   pointer-events: none;
   user-select: none;
 }
@@ -82,6 +105,7 @@
   width: 100%;
   aspect-ratio: 1/1;
   filter: grayscale(1);
+  will-change: filter;
   transition: filter 0.1s linear;
 }
 
@@ -92,9 +116,21 @@
   height: 100%;
 }
 
-.image-boxes .box {
+.image-boxes .box.person {
   position: absolute;
-  border: 2px #cdf400 solid;
+  border: 2px var(--color-hl-0) solid;
+}
+.image-boxes .box.tree {
+  position: absolute;
+  border: 2px var(--color-hl-1) solid;
+}
+.image-boxes .box.bus_stop {
+  position: absolute;
+  border: 2px var(--color-hl-2) solid;
+}
+.image-boxes .box.bus_sign {
+  position: absolute;
+  border: 2px var(--color-hl-3) solid;
 }
 
 .item-container.active {
@@ -154,7 +190,8 @@
   margin: 0 auto;
   padding: 20px;
   border: #666 1px solid;
-  border-radius: 10px;
+  border-radius: 4px;
+  will-change: opacity;
   transition: opacity 0.07s linear;
 }
 
