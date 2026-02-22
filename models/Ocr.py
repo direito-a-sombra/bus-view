@@ -32,6 +32,7 @@ class Ocr:
   def top_words(self, fpath, area_thold, score_thold=0.02):
     result = self.reader.readtext(fpath)
     mimg = PImage.open(fpath).convert("L").convert("RGB")
+    iw,ih = mimg.size
 
     words = []
     for b,t,s in result:
@@ -46,7 +47,7 @@ class Ocr:
       generated_text = self.processor.batch_decode(generated_ids, skip_special_tokens=True)
       word = generated_text[0].lower().strip().strip(".?!*,;:'\"")
       if word.startswith("goog") or word.endswith("oogle"): continue
-      words.append({ "word": word, "box": [int(x0), int(y0), int(x1), int(y1)] })
+      words.append({ "word": word, "box": [round(x0/iw, 4), round(y0/ih, 4), round(x1/iw, 4), round(y1/ih, 4)] })
 
     return words
 
