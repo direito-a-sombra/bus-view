@@ -44,7 +44,9 @@ class Ocr:
       pixel_values = self.processor(images=wimg, return_tensors="pt").pixel_values.to(Ocr.DEVICE)
       generated_ids = self.model.generate(pixel_values)
       generated_text = self.processor.batch_decode(generated_ids, skip_special_tokens=True)
-      words += generated_text
+      word = generated_text[0].lower().strip().strip(".?!*,;:'\"")
+      if word.startswith("goog") or word.endswith("oogle"): continue
+      words.append({ "word": word, "box": [int(x0), int(y0), int(x1), int(y1)] })
 
     return words
 
