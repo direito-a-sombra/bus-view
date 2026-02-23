@@ -29,7 +29,8 @@ jobs:
         sed -i -e 's/\.\.\/imgs/\.\/imgs/g' js/main.js
         sed -i -e 's/\.\.\/\.\.\/imgs/\.\.\/imgs/g' test/index.html
         sed -i -e 's/\.\.\/\.\.\/data/\.\.\/data/g' test/index.html
+        sed -i -e 's/\.\.\/\.\.\/imgs/\.\.\/imgs/g' text/text.js
         touch .nojekyll
-        git add .nojekyll test/ imgs/ data/stops.tgh.* data/objs/*.json *.html *.js *.css
+        git add .nojekyll test/ text/ imgs/ data/stops.tgh.* data/objs/*.json *.html *.js *.css
         git commit -m $COMMIT_MSG
         git push -f origin gh-pages
