@@ -1,5 +1,5 @@
-const STOPS_URL = "https://sombra.marinagem.com/bus-view/data/stops.tgh.json";
-const BOXES_URL = "https://sombra.marinagem.com/bus-view/data/objs/stops2boxes.json";
+const STOPS_URL = "https://direito-a-sombra.github.io/bus-view/data/stops.tgh.json";
+const BOXES_URL = "https://direito-a-sombra.github.io/bus-view/data/objs/stops2boxes.json";
 
 const stops = [];
 const boxes = {};

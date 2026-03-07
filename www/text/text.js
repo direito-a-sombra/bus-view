@@ -1,4 +1,4 @@
-const WORDS_URL = "https://sombra.marinagem.com/bus-view/data/objs/word2images.json";
+const WORDS_URL = "https://direito-a-sombra.github.io/bus-view/data/objs/word2images.json";
 
 const validWords = [];
 const word2boxes = {};
