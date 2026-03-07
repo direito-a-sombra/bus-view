@@ -1,0 +1,124 @@
+<html>
+  <head>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fff;
+        --color-bg-hl: #fafafa;
+        --color-text: #222;
+        --color-hl-0: #edff00;
+        --color-hl-1: #4c7f2a;
+        --color-hl-2: #222324;
+        --color-hl-3: #929293;
+        --menu-height: 3rem;
+        font-size: 15px;
+      }
+
+
+      body {
+        width: 100%;
+        min-height: 100vh;
+        background-color: var(--color-bg);
+        color: var(--color-text);
+      }
+
+      .main-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
+
+      .menu-container {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .menu-words {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      #menu-search.menu-search {
+        display: none;
+      }
+
+      .toggle-button {
+        user-select: none;
+        cursor: pointer;
+        padding: 0.05rem 0;
+      }
+
+      .toggle-button .toggle-input {
+        display: none;
+      }
+
+      .toggle-label {
+        display: block;
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        font-size: 1rem;
+        padding: 0.05rem 0.2rem;
+      }
+
+      .toggle-button:has(.toggle-input:checked) .toggle-label {
+        background-color: var(--color-hl-0);
+      }
+
+      .table {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .image-container {
+        position: relative;
+        width: 50%;
+        aspect-ratio: 1/1;
+      }
+
+      .image-container .image-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .image-container .image-boxes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+
+      .image-container .image-boxes .box {
+        position: absolute;
+        border: 2px var(--color-hl-0) solid;
+      }
+     </style>
+    <script src="./text.js"></script>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="menu-container">
+        <div class="menu-section menu-words" id="menu-words"></div>
+        <div class="menu-section menu-search" id="menu-search">
+          <label for="menu-search-input">Search</label>
+          <input id="menu-search-input" type="text" />
+        </div>
+      </div>
+
+      <div class="table" id="table"></div>
+    </div>
+  </body>
+</html>
