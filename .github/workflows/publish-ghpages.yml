@@ -17,6 +17,7 @@ jobs:
       with:
         fetch-depth: 0
         lfs: false
+        submodules: false
 
     - name: Push to gh-pages
       run: |

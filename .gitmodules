@@ -1,0 +1,9 @@
+[submodule "data"]
+	path = data
+	url = git@github.com:direito-a-sombra/bus-view-data.git
+[submodule "imgs"]
+	path = imgs
+	url = git@github.com:direito-a-sombra/bus-view-images.git
+[submodule "satellites"]
+	path = satellites
+	url = git@github.com:direito-a-sombra/bus-view-satellites.git
