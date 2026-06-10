@@ -27,10 +27,7 @@ jobs:
         git checkout --orphan gh-pages
         git reset .
         cp -r www/* .
-        sed -i -e 's/\.\.\/imgs/\.\/imgs/g' js/main.js
-        sed -i -e 's/\.\.\/\.\.\/imgs/\.\.\/imgs/g' test/index.html
-        sed -i -e 's/\.\.\/\.\.\/data/\.\.\/data/g' test/index.html
-        sed -i -e 's/\.\.\/\.\.\/imgs/\.\.\/imgs/g' text/text.js
+        # sed -i -e 's/\.\.\/\.\.\/imgs/\.\.\/imgs/g' test/index.html
         touch .nojekyll
         git add .nojekyll test/ text/ *.html *.js *.css
         git commit -m $COMMIT_MSG

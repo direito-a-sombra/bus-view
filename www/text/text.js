@@ -1,4 +1,5 @@
-const WORDS_URL = "https://direito-a-sombra.github.io/bus-view/data/objs/word2images.json";
+const WORDS_URL = "https://direito-a-sombra.github.io/bus-view-data/objs/word2images.json";
+const IMGS_URL = "https://direito-a-sombra.github.io/bus-view-images";
 
 const validWords = [];
 const word2boxes = {};
@@ -16,7 +17,7 @@ function createImage(imgId, wordBoxes) {
 
   const imgEl = document.createElement("img");
   imgEl.classList.add("image-image");
-  imgEl.src = `../../imgs/${imgId}.jpg`;
+  imgEl.src = `${IMGS_URL}/${imgId}.jpg`;
   containerEl.appendChild(imgEl);
 
   const boxOverlayEl = document.createElement("div");

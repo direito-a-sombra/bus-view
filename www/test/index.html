@@ -39,9 +39,12 @@
   </body>
 
   <script>
+    const DATA_URL = "https://direito-a-sombra.github.io/bus-view-data";
+    const IMGS_URL = "https://direito-a-sombra.github.io/bus-view-images";
+
     document.addEventListener("DOMContentLoaded", async () => {
       const tableEl = document.getElementById("table");
-      const res = await fetch("../../data/stops.tgh.csv");
+      const res = await fetch(`${DATA_URL}/stops.tgh.csv`);
       const csvText = await res.text();
       const csvLines = csvText.split("\n").slice(1, 4040);
 
@@ -92,7 +95,7 @@
         rowEl.appendChild(infoEl);
 
         ["address", "address_coords", "heading", "station_coords"].forEach((dir, idx) => {
-          const imgSrc = `../../imgs/${dir}/${mId}.jpg`;
+          const imgSrc = `${IMGS_URL}/${dir}/${mId}.jpg`;
           const aEl = document.createElement("a");
           aEl.classList.add("picture-wrapper");
           aEl.setAttribute("href", imgSrc);
