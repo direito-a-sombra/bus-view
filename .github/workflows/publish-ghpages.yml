@@ -1,0 +1,37 @@
+name: Publish to GH Pages
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - ".github/workflows/publish-ghpages.yml"
+      - "www/**/*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        lfs: false
+
+    - name: Push to gh-pages
+      run: |
+        GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-8)
+        COMMIT_MSG=${{ github.ref_name }}-$(git log --format=%h -1)
+        git config --local user.name "github-actions[bot]"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git checkout --orphan gh-pages
+        git reset .
+        cp -r www/* .
+        sed -i -e 's/\.\.\/imgs/\.\/imgs/g' js/main.js
+        sed -i -e 's/\.\.\/\.\.\/imgs/\.\.\/imgs/g' test/index.html
+        sed -i -e 's/\.\.\/\.\.\/data/\.\.\/data/g' test/index.html
+        sed -i -e 's/\.\.\/\.\.\/imgs/\.\.\/imgs/g' text/text.js
+        touch .nojekyll
+        git add .nojekyll test/ text/ *.html *.js *.css
+        git commit -m $COMMIT_MSG
+        git push -f origin gh-pages

@@ -1,0 +1,12 @@
+.DS*
+__pycache__/
+env.py
+*.pyc
+*.pyc.*
+*.py.*
+p5/ImageTagger/*boxes*json
+datasets/*
+runs/*
+bus-view.yaml
+yolo*.pt
+lightning_logs/*
