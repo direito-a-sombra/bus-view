@@ -18,36 +18,54 @@ function centerCoord(features) {
   return [sums[0] / sums[2], sums[1] / sums[2]];
 }
 
-// TODO: use quartiles
-function getColor(value) {
-  return value > 0.75 ? "#800026" :
-         value > 0.5  ? "#BD0026" :
-         value > 0.25 ? "#E31A1C" :
-                        "#FFEDA0";
+// interpolateOranges(t)
+// interpolateYlOrBr(t)
+function styleFeature(features, propName) {
+  const colorScaler = d3.scaleSequentialSqrt()
+    .domain(d3.extent(features, d => d.properties[propName]))
+    .interpolator(d3.interpolateYlOrBr);
+
+  return (feature) => {
+    return {
+      fillColor: colorScaler(feature.properties[propName]),
+      fillOpacity: 0.7,
+      opacity: 0,
+    };
+  }
 }
 
-function styleFeature(feature) {
-  return {
-    fillColor: getColor(feature.properties.vegetation_pct),
-    fillOpacity: 0.7,
-    // color: "#ffffff",
-    // weight: 2,
-    opacity: 0,
-  };
-}
+let geoJsonLayer;
+const filterProps = [
+  "pop_total",
+  "vegetation_pct",
+  "mean_renda",
+];
 
 document.addEventListener("DOMContentLoaded", async () => {
   const geoData = await fetchJson(GEOJSON_URL);
-  console.log(geoData);
   const mapCenter = centerCoord(geoData.features);
+  console.log(geoData);
 
   const map = L.map("map").setView(mapCenter, 12);
 
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  const tileLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  L.geoJSON(geoData.features, { style: styleFeature }).addTo(map);
+  filterProps.forEach(p => {
+    const but = document.createElement("button");
+    but.classList.add("menu-button");
+    but.innerHTML = p.replace("_pct", " %").replace("mean_", "").replace("_total", "ulação");
+
+    but.addEventListener("click", () => {
+      geoJsonLayer?.remove();
+      geoJsonLayer = L.geoJSON(geoData.features, { style: styleFeature(geoData.features, p) });
+      geoJsonLayer.addTo(map);
+    });
+    document.querySelector("#menu").appendChild(but);
+  });
+
+  document.querySelector("#menu").querySelector("button").click();
 });
