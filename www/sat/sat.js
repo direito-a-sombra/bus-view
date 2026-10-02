@@ -20,14 +20,17 @@ function centerCoord(features) {
 
 // interpolateOranges(t)
 // interpolateYlOrBr(t)
-function styleFeature(features, propName) {
-  const colorScaler = d3.scaleSequentialSqrt()
-    .domain(d3.extent(features, d => d.properties[propName]))
-    .interpolator(d3.interpolateYlOrBr);
+// interpolateYlOrBr(t)
+function styleFeature(features, prop) {
+  const colorInterpolator = d3.interpolateYlOrBr;
+  const colorScaler = prop.scaler()
+    .domain(d3.extent(features, d => d.properties[prop.name]))
+    .interpolator(colorInterpolator)
+    .unknown(colorInterpolator(0));
 
   return (feature) => {
     return {
-      fillColor: colorScaler(feature.properties[propName]),
+      fillColor: colorScaler(parseFloat(feature.properties[prop.name])),
       fillOpacity: 0.7,
       opacity: 0,
     };
@@ -35,10 +38,20 @@ function styleFeature(features, propName) {
 }
 
 let geoJsonLayer;
+
+const scalers = {
+  linear: d3.scaleSequential,
+  sqrt: d3.scaleSequentialSqrt,
+  log: d3.scaleSequentialLog,
+};
+
 const filterProps = [
-  "pop_total",
-  "vegetation_pct",
-  "mean_renda",
+  { name: "pop_total", label: "population (count)", scaler: scalers.sqrt },
+  { name: "vegetation_pct", label: "vegetation (%)", scaler: scalers.sqrt },
+  { name: "SM_LOG", label: "income (minimum wage)", scaler: scalers.linear },
+  // { name: "mean_renda", label: "average income", scaler: scalers.log },
+  // { name: "densidade_populacao", label: "population density", scaler: scalers.linear },
+  // { name: "SM", label: "income (minimum wage)", scaler: scalers.log },
 ];
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -57,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   filterProps.forEach(p => {
     const but = document.createElement("button");
     but.classList.add("menu-button");
-    but.innerHTML = p.replace("_pct", " %").replace("mean_", "").replace("_total", "ulação");
+    but.innerHTML = p.label;
 
     but.addEventListener("click", () => {
       geoJsonLayer?.remove();
