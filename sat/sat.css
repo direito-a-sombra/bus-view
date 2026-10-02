@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-hl-0: #cdf400;
+  --color-hl-1: #34541f;
+  --color-hl-2: #222324;
+  --color-hl-3: #c9da2a;
+  --menu-height: 50px;
+}
+
+.menu {
+  height: var(--menu-height);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0 20px;
+}
+
+.map {
+  height: calc(100vh - var(--menu-height));
+}
+
+.menu .menu-button {
+  display: block;
+  padding: 6px 16px;
+  cursor: pointer;
+}
