@@ -1,5 +1,5 @@
-const STOPS_URL = "https://direito-a-sombra.github.io/bus-view-data/stops.tgh.json";
-const BOXES_URL = "https://direito-a-sombra.github.io/bus-view-data/objs/stops2boxes.json";
+const STOPS_URL = "https://direito-a-sombra.github.io/bus-view-data/stops.all.json";
+const BOXES_URL = "https://direito-a-sombra.github.io/bus-view-data/objs/images2boxes.json";
 const IMGS_URL = "https://direito-a-sombra.github.io/bus-view-images";
 
 const stops = [];
@@ -109,7 +109,7 @@ function handleImageClick(evt) {
   if (evt.currentTarget != selectedImage) {
     selectedImage = evt.currentTarget;
     setTimeout(() => {
-      infoEl.appendChild(createInfoEl(stops[selectedImage.dataset.id]));
+      infoEl.appendChild(createInfoEl(stops[selectedImage.dataset.idx]));
       infoEl.classList.add("show");
       selectedImage.classList.add("selected");
       drawBoxes(selectedImage);
@@ -120,7 +120,7 @@ function handleImageClick(evt) {
 }
 
 function createImageEl(stop) {
-  const imgSrc = `${IMGS_URL}/${stop.image}`;
+  const imgSrc = `${IMGS_URL}/${stop.id}.jpg`;
 
   const imgWrapperEl = document.createElement("div");
   imgWrapperEl.classList.add("image-wrapper");
@@ -183,6 +183,7 @@ function loadImages(stops) {
     const itemEl = document.createElement("div");
     itemEl.classList.add("item-container", `col-${idx % 5}`);
     itemEl.dataset.id = stop.id;
+    itemEl.dataset.idx = idx;
 
     const imgEl = createImageEl(stop);
     itemEl.appendChild(imgEl);
