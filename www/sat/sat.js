@@ -1,4 +1,4 @@
-const GEOJSON_URL = "https://direito-a-sombra.github.io/bus-view-satellites/data/sat_hex.geojson";
+const GEOJSON_URL = "https://direito-a-sombra.github.io/bus-view-satellites/data/sat_hex_sun.geojson";
 
 function fetchJson(url) {
   return fetch(url).then((res) => res.json());
@@ -46,12 +46,13 @@ const scalers = {
 };
 
 const filterProps = [
-  { name: "pop_total", label: "population (count)", scaler: scalers.sqrt },
+  // { name: "pop_total_old", label: "population (count)", scaler: scalers.sqrt },
+  { name: "populacao_total", label: "population (count)", scaler: scalers.sqrt },
   { name: "vegetation_pct", label: "vegetation (%)", scaler: scalers.sqrt },
   { name: "SM_LOG", label: "income (minimum wage)", scaler: scalers.linear },
-  // { name: "mean_renda", label: "average income", scaler: scalers.log },
-  // { name: "densidade_populacao", label: "population density", scaler: scalers.linear },
-  // { name: "SM", label: "income (minimum wage)", scaler: scalers.log },
+  // { name: "renda_media", label: "renda_media", scaler: scalers.sqrt },
+  { name: "numero_paradas", label: "numero_paradas", scaler: scalers.linear },
+  { name: "predios_11h_dist_sol_m", label: "predios_11h_dist_sol_m", scaler: scalers.linear },
 ];
 
 document.addEventListener("DOMContentLoaded", async () => {
